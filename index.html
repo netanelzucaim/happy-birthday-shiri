@@ -19,50 +19,15 @@
     min-height: 100vh;
     min-height: 100dvh;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7, #c3a6ff, #ffd166);
+    background-size: 400% 400%;
+    animation: gradientShift 16s ease infinite;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 24px;
     padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
     overflow-x: hidden;
-  }
-  .bg-slideshow {
-    position: fixed;
-    inset: 0;
-    height: 100vh;
-    height: 100dvh;
-    z-index: 0;
-  }
-  .bg-slide {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.92) saturate(1.05);
-    opacity: 0;
-    animation: bgFade 25s infinite;
-  }
-  .bg-slide:nth-child(1) { animation-delay: 0s; }
-  .bg-slide:nth-child(2) { animation-delay: 5s; }
-  .bg-slide:nth-child(3) { animation-delay: 10s; }
-  .bg-slide:nth-child(4) { animation-delay: 15s; }
-  .bg-slide:nth-child(5) { animation-delay: 20s; }
-  @keyframes bgFade {
-    0% { opacity: 0; }
-    4% { opacity: 1; }
-    20% { opacity: 1; }
-    24% { opacity: 0; }
-    100% { opacity: 0; }
-  }
-  .bg-overlay {
-    position: fixed;
-    inset: 0;
-    height: 100vh;
-    height: 100dvh;
-    z-index: 1;
-    background: linear-gradient(135deg, rgba(255,221,225,0.28), rgba(238,156,167,0.22), rgba(195,166,255,0.22), rgba(255,209,102,0.28));
-    background-size: 400% 400%;
-    animation: gradientShift 16s ease infinite;
   }
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
@@ -93,11 +58,15 @@
   .photo-frame img:nth-child(3) { animation-delay: 10s; }
   .photo-frame img:nth-child(4) { animation-delay: 15s; }
   .photo-frame img:nth-child(5) { animation-delay: 20s; }
+  @keyframes bgFade {
+    0% { opacity: 0; }
+    4% { opacity: 1; }
+    20% { opacity: 1; }
+    24% { opacity: 0; }
+    100% { opacity: 0; }
+  }
   .card {
-    background: rgba(255,255,255,0.68);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.9);
     border-radius: 28px;
     max-width: 720px;
     width: 100%;
@@ -106,9 +75,6 @@
     text-align: center;
     position: relative;
     z-index: 3;
-  }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .card { background: rgba(255,255,255,0.88); }
   }
   h1 {
     font-size: 2.6em;
@@ -122,14 +88,12 @@
     color: #7a4d8c;
     font-size: 1.2em;
     margin-bottom: 32px;
-    text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.6);
   }
   .message {
     text-align: right;
     font-size: 1.15em;
     line-height: 1.9;
     color: #4a3350;
-    text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.6);
   }
   .message p { margin: 0 0 18px; }
   .wishes {
@@ -140,7 +104,7 @@
     gap: 14px;
   }
   .wishes li {
-    background: linear-gradient(90deg, rgba(255,111,165,0.42), rgba(165,107,255,0.42));
+    background: linear-gradient(90deg, rgba(255,111,165,0.12), rgba(165,107,255,0.12));
     border-radius: 16px;
     padding: 16px 20px;
     font-size: 1.1em;
@@ -149,7 +113,6 @@
     gap: 12px;
     justify-content: flex-end;
     text-align: right;
-    text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.6);
   }
   .wishes .emoji { font-size: 1.6em; }
   .signature {
@@ -193,15 +156,6 @@
 </style>
 </head>
 <body>
-
-<div class="bg-slideshow">
-  <div class="bg-slide" style="background-image: url('images/photo1.jpeg');"></div>
-  <div class="bg-slide" style="background-image: url('images/photo2.jpeg');"></div>
-  <div class="bg-slide" style="background-image: url('images/photo3.jpeg');"></div>
-  <div class="bg-slide" style="background-image: url('images/photo4.jpeg');"></div>
-  <div class="bg-slide" style="background-image: url('images/photo5.jpeg');"></div>
-</div>
-<div class="bg-overlay"></div>
 
 <div class="balloons" id="balloons"></div>
 <div id="confettiLayer"></div>
