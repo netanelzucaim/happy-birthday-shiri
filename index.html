@@ -15,14 +15,46 @@
     margin: 0;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7, #c3a6ff, #ffd166);
-    background-size: 400% 400%;
-    animation: gradientShift 16s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 24px;
     overflow-x: hidden;
+  }
+  .bg-slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+  .bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px) brightness(0.85) saturate(1.05);
+    transform: scale(1.08);
+    opacity: 0;
+    animation: bgFade 25s infinite;
+  }
+  .bg-slide:nth-child(1) { animation-delay: 0s; }
+  .bg-slide:nth-child(2) { animation-delay: 5s; }
+  .bg-slide:nth-child(3) { animation-delay: 10s; }
+  .bg-slide:nth-child(4) { animation-delay: 15s; }
+  .bg-slide:nth-child(5) { animation-delay: 20s; }
+  @keyframes bgFade {
+    0% { opacity: 0; }
+    4% { opacity: 1; }
+    20% { opacity: 1; }
+    24% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(255,221,225,0.55), rgba(238,156,167,0.5), rgba(195,166,255,0.5), rgba(255,209,102,0.55));
+    background-size: 400% 400%;
+    animation: gradientShift 16s ease infinite;
   }
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
@@ -38,7 +70,7 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     text-align: center;
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
   h1 {
     font-size: 2.6em;
@@ -89,7 +121,7 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
   .balloon {
     position: absolute;
@@ -106,7 +138,7 @@
     top: -40px;
     font-size: 1.4em;
     animation: fall linear infinite;
-    z-index: 1;
+    z-index: 2;
   }
   @keyframes fall {
     0% { transform: translateY(0) rotate(0deg); }
@@ -119,6 +151,15 @@
 </style>
 </head>
 <body>
+
+<div class="bg-slideshow">
+  <div class="bg-slide" style="background-image: url('images/photo1.jpeg');"></div>
+  <div class="bg-slide" style="background-image: url('images/photo2.jpeg');"></div>
+  <div class="bg-slide" style="background-image: url('images/photo3.jpeg');"></div>
+  <div class="bg-slide" style="background-image: url('images/photo4.jpeg');"></div>
+  <div class="bg-slide" style="background-image: url('images/photo5.jpeg');"></div>
+</div>
+<div class="bg-overlay"></div>
 
 <div class="balloons" id="balloons"></div>
 <div id="confettiLayer"></div>
