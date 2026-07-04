@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום הולדת שמח, שירי! 🎂</title>
+<style>
+  :root {
+    --pink: #ff6fa5;
+    --purple: #a56bff;
+    --gold: #ffd166;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7, #c3a6ff, #ffd166);
+    background-size: 400% 400%;
+    animation: gradientShift 16s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    overflow-x: hidden;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .card {
+    background: rgba(255,255,255,0.9);
+    border-radius: 28px;
+    max-width: 720px;
+    width: 100%;
+    padding: 48px 36px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  h1 {
+    font-size: 2.6em;
+    margin: 0 0 8px;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .subtitle {
+    color: #7a4d8c;
+    font-size: 1.2em;
+    margin-bottom: 32px;
+  }
+  .message {
+    text-align: right;
+    font-size: 1.15em;
+    line-height: 1.9;
+    color: #4a3350;
+  }
+  .message p { margin: 0 0 18px; }
+  .wishes {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0;
+    display: grid;
+    gap: 14px;
+  }
+  .wishes li {
+    background: linear-gradient(90deg, rgba(255,111,165,0.12), rgba(165,107,255,0.12));
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+    text-align: right;
+  }
+  .wishes .emoji { font-size: 1.6em; }
+  .signature {
+    margin-top: 36px;
+    font-size: 1.3em;
+    color: var(--purple);
+    font-weight: bold;
+  }
+  .balloons {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .balloon {
+    position: absolute;
+    bottom: -120px;
+    font-size: 2.5em;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(-110vh) rotate(15deg); opacity: 0; }
+  }
+  .confetti {
+    position: fixed;
+    top: -40px;
+    font-size: 1.4em;
+    animation: fall linear infinite;
+    z-index: 1;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 2em; }
+    .card { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="balloons" id="balloons"></div>
+<div id="confettiLayer"></div>
+
+<div class="card">
+  <h1>🎉 יום הולדת שמח, שירי! 🎂</h1>
+  <div class="subtitle">האחות הכי יפה ומדהימה בעולם 💖</div>
+
+  <div class="message">
+    <p>שירי יקרה שלי,</p>
+    <p>
+      את פשוט <strong>מדהימה</strong> - את יפה בחוץ ויפה עוד יותר בפנים.
+      אני מסתכל עלייך ורואה כמה השתנית והתפתחת לאורך השנים - מהילדה הקטנה שהכרתי,
+      להיום, לאישה חזקה, עצמאית ומלאה בטוב לב שאני כל כך גאה בה.
+    </p>
+    <p>
+      כל שנה את ממשיכה להפתיע אותי מחדש, ואני יודע שהשנה הקרובה תהיה הכי טובה שלך עד היום.
+    </p>
+  </div>
+
+  <ul class="wishes">
+    <li><span class="emoji">📚</span> בהצלחה ענקית בלימודים - את תמשיכי להצליח ולהתקדם, כמו תמיד</li>
+    <li><span class="emoji">🧒</span> בהצלחה בהתמחות בגן - הילדים שם הכי בני מזל שיש להם אותך</li>
+    <li><span class="emoji">💍</span> ומאחל לך שהשנה הזו תהיה השנה שבה תכירי את בעלך לעתיד</li>
+    <li><span class="emoji">✨</span> ושתמיד תישארי בדיוק כמו שאת - מיוחדת, יפה ואהובה</li>
+  </ul>
+
+  <div class="signature">אוהב אותך המון, יום הולדת שמח! 🎈</div>
+</div>
+
+<script>
+  const balloonEmojis = ["🎈", "🎈", "🎈", "🎀", "💝"];
+  const balloonsContainer = document.getElementById('balloons');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.textContent = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+    b.style.left = Math.random() * 100 + 'vw';
+    b.style.animationDuration = (8 + Math.random() * 8) + 's';
+    b.style.animationDelay = (Math.random() * 10) + 's';
+    balloonsContainer.appendChild(b);
+  }
+
+  const confettiEmojis = ["🎊", "✨", "🌸", "💖", "⭐"];
+  const confettiLayer = document.getElementById('confettiLayer');
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.animationDuration = (6 + Math.random() * 8) + 's';
+    c.style.animationDelay = (Math.random() * 8) + 's';
+    confettiLayer.appendChild(c);
+  }
+</script>
+
+</body>
+</html>
